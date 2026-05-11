@@ -1,0 +1,40 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper functions
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function isValidPathologyBooking(data) {
+      return data.keys().hasAll(['patientName', 'phoneNumber', 'selectedTests', 'bookingDate', 'createdAt'])
+        && data.patientName is string && data.patientName.size() <= 100
+        && data.phoneNumber is string && data.phoneNumber.size() <= 20
+        && data.selectedTests is string && data.selectedTests.size() <= 1000
+        && data.bookingDate is string && data.bookingDate.size() <= 50
+        && data.createdAt == request.time
+        && (data.get('age', '') is string)
+        && (data.get('gender', '') is string)
+        && (data.get('city', '') is string)
+        && (data.get('collectionType', '') is string)
+        && (data.get('notes', '') is string)
+        && (data.get('emergency', '') is string)
+        && (data.get('timestamp', '') is string);
+    }
+
+    match /pathology_bookings/{bookingId} {
+      allow create: if isValidId(bookingId) && isValidPathologyBooking(incoming());
+      // No public read/update/delete for patient privacy
+      allow read, update, delete: if false;
+    }
+  }
+}

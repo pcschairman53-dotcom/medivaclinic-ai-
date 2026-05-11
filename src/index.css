@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  
+  --color-primary: #0ea5e9;
+  --color-secondary: #8b5cf6;
+  --color-accent: #22d3ee;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-slate-50 text-slate-900 font-sans overflow-x-hidden;
+}
+
+.glass {
+  @apply bg-white/70 backdrop-blur-lg border border-white/20 shadow-xl;
+}
+.glass-premium {
+  @apply bg-white/40 backdrop-blur-2xl border border-white/50 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] relative overflow-hidden;
+}
+.glass-premium::before {
+  content: "";
+  @apply absolute inset-0 bg-gradient-to-br from-white/30 to-transparent pointer-events-none;
+}
+
+.glass-dark {
+  @apply bg-slate-950/80 backdrop-blur-xl border border-white/10 shadow-2xl;
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+}
+
+.gradient-bg {
+  @apply bg-gradient-to-br from-primary/10 via-white to-secondary/10;
+}
+
+.premium-card {
+  @apply bg-white p-8 rounded-3xl border border-slate-100 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 rounded-full hover:bg-slate-400 transition-colors;
+}

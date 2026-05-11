@@ -1,0 +1,6 @@
+{
+  "name": "Mediva Clinic AI",
+  "description": "A premium AI-powered medical clinic platform with smart chatbot, appointment booking, and futuristic healthcare interface.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["AI Assistant", "Appointment Booking", "WhatsApp Integration"]
+}

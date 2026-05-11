@@ -1,0 +1,30 @@
+{
+  "entities": {
+    "PathologyBooking": {
+      "title": "Pathology Booking",
+      "description": "Stores pathology test booking details from patients",
+      "type": "object",
+      "properties": {
+        "timestamp": { "type": "string", "format": "date-time" },
+        "patientName": { "type": "string" },
+        "phoneNumber": { "type": "string" },
+        "gender": { "type": "string" },
+        "age": { "type": "string" },
+        "city": { "type": "string" },
+        "selectedTests": { "type": "string" },
+        "bookingDate": { "type": "string" },
+        "collectionType": { "type": "string" },
+        "notes": { "type": "string" },
+        "emergency": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["patientName", "phoneNumber", "selectedTests", "bookingDate"]
+    }
+  },
+  "firestore": {
+    "/pathology_bookings/{bookingId}": {
+      "schema": "PathologyBooking",
+      "description": "Collection of pathology bookings"
+    }
+  }
+}
