@@ -68,7 +68,7 @@ export default function Hero() {
             </Link>
             <button className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 sm:py-5 hover:bg-white/50 rounded-full transition-colors group border border-transparent hover:border-slate-100 sm:border-0">
               <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-white rounded-full shadow-sm group-hover:scale-110 transition-transform shrink-0">
-                <Play size={16} sm:size={18} fill="currentColor" />
+                <Play className="w-4 h-4 sm:w-[18px] sm:h-[18px]" fill="currentColor" />
               </div>
               <span className="font-bold text-sm">How it Works</span>
             </button>
@@ -131,7 +131,7 @@ export default function Hero() {
               <div className="relative">
                 <div className="absolute inset-0 bg-green-500 blur-lg opacity-20 group-hover/trust:opacity-40 transition-opacity animate-pulse" />
                 <div className="relative w-8 h-8 sm:w-12 sm:h-12 bg-emerald-50 text-emerald-600 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-inner border border-emerald-100 group-hover/trust:scale-110 transition-transform duration-500">
-                  <ShieldCheck size={20} sm:size={26} />
+                  <ShieldCheck className="w-5 h-5 sm:w-6.5 sm:h-6.5" />
                 </div>
               </div>
               <div className="space-y-0.5">

@@ -1,7 +1,9 @@
 import { motion } from "motion/react";
+import { useNavigate } from "react-router-dom";
 import { MessageCircle, ArrowRight, Share2, ShieldCheck, Heart } from "lucide-react";
 
 export default function CTASection() {
+  const navigate = useNavigate();
   return (
     <section className="py-20 px-6">
       <div className="max-w-7xl mx-auto">
@@ -40,7 +42,7 @@ export default function CTASection() {
               <motion.button 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => window.location.href = "/booking"}
+                onClick={() => navigate("/booking")}
                 className="w-full sm:w-auto px-10 sm:px-12 py-5 sm:py-6 bg-primary text-white rounded-full font-black text-base sm:text-lg shadow-2xl shadow-primary/40 flex items-center justify-center gap-3"
               >
                 Book Now <ArrowRight size={20} />

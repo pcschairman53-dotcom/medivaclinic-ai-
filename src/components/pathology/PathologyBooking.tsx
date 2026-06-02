@@ -1,4 +1,5 @@
 import React, { useState, useMemo, memo, useCallback, ChangeEvent, FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { Send, CheckCircle2, Loader2, Microscope, MapPin, Calendar, User, Phone, ChevronRight, Activity, Zap, LifeBuoy, Check } from "lucide-react";
 import { PATHOLOGY_TESTS, GOOGLE_SCRIPT_URL, CLINIC_WHATSAPP } from "../../constants";
@@ -93,6 +94,7 @@ const TestCard = memo(({
 ));
 
 export default function PathologyBooking() {
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -272,7 +274,7 @@ export default function PathologyBooking() {
           </div>
 
           <button 
-            onClick={() => window.location.href = "/"}
+            onClick={() => navigate("/")}
             className="w-full py-5 bg-slate-950 text-white rounded-[2rem] font-black uppercase tracking-[0.15em] text-xs hover:bg-black transition-all shadow-2xl shadow-slate-900/20 active:scale-[0.98] relative z-10"
           >
             Return to Dashboard
@@ -295,7 +297,7 @@ export default function PathologyBooking() {
           className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full text-primary text-[10px] sm:text-xs font-black uppercase tracking-widest shadow-sm"
         >
           <div className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse" />
-          <Microscope size={12} sm:size={14} /> Diagnostic SaaS 2.0
+          <Microscope className="w-3 h-3 sm:w-3.5 sm:h-3.5" /> Diagnostic SaaS 2.0
         </motion.div>
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-slate-900 tracking-tighter leading-tight sm:leading-none">
           Diagnostic <span className="gradient-text italic">Booking</span>
@@ -325,7 +327,7 @@ export default function PathologyBooking() {
                   "w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center transition-colors",
                   step === s.id ? "bg-white/20" : "bg-slate-50"
                 )}>
-                  <s.icon size={16} sm:size={20} />
+                  <s.icon className="w-4 h-4 sm:w-5 sm:h-5" />
                 </div>
                 <div className="text-left">
                   <p className="text-[8px] sm:text-[10px] font-black uppercase tracking-widest opacity-60">Step 0{s.id}</p>
@@ -343,7 +345,7 @@ export default function PathologyBooking() {
               className="p-4 sm:p-8 glass-premium rounded-[1.5rem] sm:rounded-[2.5rem] bg-emerald-500/5 border-emerald-500/20"
             >
               <h4 className="text-emerald-700 font-black uppercase tracking-widest text-[10px] sm:text-xs mb-3 sm:mb-4 flex items-center gap-2">
-                <CheckCircle2 size={12} sm:size={14} /> Selected ({selectedTests.length})
+                <CheckCircle2 className="w-3 h-3 sm:w-3.5 sm:h-3.5" /> Selected ({selectedTests.length})
               </h4>
               <div className="flex flex-wrap gap-1.5 sm:gap-2">
                 {PATHOLOGY_TESTS.filter(t => selectedTests.includes(t.id)).map(t => (
@@ -376,14 +378,14 @@ export default function PathologyBooking() {
                     <div className="space-y-2">
                       <label className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-slate-500 ml-1">Full Name</label>
                       <div className="relative">
-                        <User className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={16} sm:size={18} />
+                        <User className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4 sm:w-[18px] sm:h-[18px]" />
                         <input name="name" required value={formData.name} onChange={handleInputChange} placeholder="John Doe" className="w-full pl-10 sm:pl-12 pr-4 py-3 sm:py-4 bg-white/50 border border-slate-100 rounded-xl sm:rounded-2xl focus:outline-none focus:border-primary transition-all font-medium text-sm sm:text-base" />
                       </div>
                     </div>
                     <div className="space-y-2">
                       <label className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-slate-500 ml-1">Mobile Number</label>
                       <div className="relative">
-                        <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={16} sm:size={18} />
+                        <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4 sm:w-[18px] sm:h-[18px]" />
                         <input name="mobile" required type="tel" value={formData.mobile} onChange={handleInputChange} placeholder="+91 XXXXX XXXXX" className="w-full pl-10 sm:pl-12 pr-4 py-3 sm:py-4 bg-white/50 border border-slate-100 rounded-xl sm:rounded-2xl focus:outline-none focus:border-primary transition-all font-medium text-sm sm:text-base" />
                       </div>
                     </div>
@@ -405,7 +407,7 @@ export default function PathologyBooking() {
                     <div className="space-y-2">
                       <label className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-slate-500 ml-1">City</label>
                       <div className="relative">
-                        <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={14} sm:size={16} />
+                        <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-[14px] h-[14px] sm:w-4 sm:h-4" />
                         <input name="city" required value={formData.city} onChange={handleInputChange} placeholder="Kolkata" className="w-full pl-9 sm:pl-10 pr-4 py-3 sm:py-4 bg-white/50 border border-slate-100 rounded-xl sm:rounded-2xl focus:outline-none focus:border-primary transition-all font-medium text-sm sm:text-base" />
                       </div>
                     </div>
@@ -431,7 +433,7 @@ export default function PathologyBooking() {
                     {categories.map((cat) => (
                       <div key={cat} className="space-y-3 sm:space-y-4 mt-2 sm:mt-4">
                         <h4 className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-primary flex items-center gap-2">
-                          <Activity size={10} sm:size={12} /> {cat}
+                          <Activity className="w-2.5 h-2.5 sm:w-3 sm:h-3" /> {cat}
                         </h4>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                           {PATHOLOGY_TESTS.filter(t => t.category === cat).map(test => (
@@ -466,7 +468,7 @@ export default function PathologyBooking() {
                     <div className="space-y-2">
                        <label className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-slate-500 ml-1">Preferred Date</label>
                        <div className="relative">
-                        <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={16} sm:size={18} />
+                        <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4 sm:w-[18px] sm:h-[18px]" />
                         <input name="date" required type="date" value={formData.date} onChange={handleInputChange} className="w-full pl-10 sm:pl-12 pr-4 py-3 sm:py-4 bg-white border border-slate-100 rounded-xl sm:rounded-2xl focus:outline-none focus:border-primary transition-all font-medium text-sm sm:text-base" />
                       </div>
                     </div>
@@ -487,7 +489,7 @@ export default function PathologyBooking() {
                   <div className="p-4 sm:p-6 bg-rose-50 border border-rose-100 rounded-[1.5rem] sm:rounded-[2rem] flex items-center justify-between">
                     <div className="flex items-center gap-3 sm:gap-4">
                       <div className="w-8 h-8 sm:w-10 sm:h-10 bg-rose-500 text-white rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg shadow-rose-500/20 shrink-0">
-                        <LifeBuoy size={16} sm:size={20} />
+                        <LifeBuoy className="w-4 h-4 sm:w-5 sm:h-5" />
                       </div>
                       <div>
                         <p className="text-xs sm:text-sm font-black text-rose-950">Emergency Priority?</p>
@@ -515,11 +517,11 @@ export default function PathologyBooking() {
                     >
                       {loading ? (
                         <>
-                          <Loader2 className="animate-spin" size={18} sm:size={20} /> Processing...
+                          <Loader2 className="animate-spin w-[18px] h-[18px] sm:w-5 sm:h-5" /> Processing...
                         </>
                       ) : (
                         <>
-                          <Send size={18} sm:size={20} /> Send Request
+                          <Send className="w-[18px] h-[18px] sm:w-5 sm:h-5" /> Send Request
                         </>
                       )}
                     </button>

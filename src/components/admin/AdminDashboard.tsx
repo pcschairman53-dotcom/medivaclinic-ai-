@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { 
   LayoutDashboard, 
   Users, 
@@ -15,7 +15,9 @@ import {
   Loader2,
   Clock,
   Filter,
-  Download
+  Download,
+  X,
+  Menu
 } from "lucide-react";
 import { fetchLeads, SubmissionData } from "../../services/sheets";
 import { cn } from "../../lib/utils";

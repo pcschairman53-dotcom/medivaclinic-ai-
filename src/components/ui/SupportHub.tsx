@@ -1,4 +1,5 @@
 import React, { useState, useCallback, FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { 
   Headphones, 
@@ -19,6 +20,7 @@ import confetti from "canvas-confetti";
 import { cn } from "../../lib/utils";
 
 export default function SupportHub() {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [view, setView] = useState<"menu" | "callback">("menu");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -209,7 +211,10 @@ export default function SupportHub() {
                         <motion.button
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
-                          onClick={() => window.location.href = "/booking"}
+                          onClick={() => {
+                            navigate("/booking");
+                            setIsOpen(false);
+                          }}
                           className="flex items-center justify-between p-5 bg-primary text-white rounded-3xl group shadow-lg shadow-primary/20"
                         >
                           <div className="flex items-center gap-4 text-left">

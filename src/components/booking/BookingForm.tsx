@@ -1,4 +1,5 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { Calendar, User, Phone, ClipboardList, Clock, ArrowRight, CheckCircle2, ChevronRight, ChevronLeft, MessageCircle } from "lucide-react";
 import { submitToSheets } from "../../services/sheets";
@@ -6,6 +7,7 @@ import { cn } from "../../lib/utils";
 import confetti from "canvas-confetti";
 
 export default function BookingForm() {
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -71,7 +73,7 @@ export default function BookingForm() {
               <MessageCircle size={20} /> Chat on WhatsApp
             </a>
             <button 
-              onClick={() => window.location.href = "/"}
+              onClick={() => navigate("/")}
               className="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-slate-800 transition-all shadow-xl shadow-slate-900/10"
             >
               Back to Home

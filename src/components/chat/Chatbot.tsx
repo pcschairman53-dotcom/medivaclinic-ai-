@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { MessageSquare, X, Send, User, Bot, Loader2, Minus, Maximize2, Calendar, ClipboardList, MapPin, Shield, CheckCircle2, MessageCircle, ArrowRight } from "lucide-react";
 import { chatWithAI } from "../../services/gemini";
@@ -9,6 +10,7 @@ import ReactMarkdown from "react-markdown";
 import confetti from "canvas-confetti";
 
 export default function Chatbot() {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -402,7 +404,10 @@ export default function Chatbot() {
                           <MapPin size={14} /> Get Directions
                         </a>
                         <button 
-                          onClick={() => window.location.href = "/booking"}
+                          onClick={() => {
+                            navigate("/booking");
+                            setIsOpen(false);
+                          }}
                           className={cn(
                             "w-full flex items-center justify-center gap-2 py-3 rounded-2xl font-black text-[10px] uppercase tracking-widest transition-all border",
                             isDarkMode ? "bg-slate-800/50 border-slate-700 text-white hover:bg-slate-800" : "bg-white border-slate-200 text-slate-800 hover:border-primary"
@@ -503,7 +508,10 @@ export default function Chatbot() {
                         <MessageCircle size={14} className="shrink-0" /> WhatsApp
                       </a>
                       <button 
-                        onClick={() => window.location.href = "/booking"}
+                        onClick={() => {
+                          navigate("/booking");
+                          setIsOpen(false);
+                        }}
                         className={cn(
                           "py-3.5 px-2 border rounded-2xl text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-2 transition-all whitespace-nowrap overflow-hidden",
                           isDarkMode ? "bg-slate-800 border-slate-700 hover:bg-slate-700" : "bg-white border-slate-200 hover:border-primary"
